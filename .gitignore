@@ -4,3 +4,6 @@
 /lib
 /lib64
 pyvenv.cfg
+#pytest cache
+/tests/__pycache__
+/.pytest_cache
