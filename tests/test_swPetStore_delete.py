@@ -36,7 +36,7 @@ async def test_delete_pet(default_client: httpx.AsyncClient, mock_post_pet, fake
         data = response.json()
     except ValueError:
         pytest.fail("Response is not in JSON format")
-    assert data.message == pet_id
+    assert int(data["message"]) == pet_id, "The pet id does not match"
     response = await default_client.get(f"/pet/{pet_id}")
     assert response.status_code == 404,"The pet was not deleted"
 
