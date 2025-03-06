@@ -1,6 +1,7 @@
 import httpx
 import pytest
-import pydantic
+import jwt
+import datetime
 
 BASE_URL = "https://petstore.swagger.io/v2"
 
@@ -19,6 +20,14 @@ async def default_client():
     async with httpx.AsyncClient(base_url=BASE_URL) as client:
         yield client
 
+@pytest.fixture
+def fake_jwt_token():
+    """Fixture to generate a fake JWT token."""
+    payload = {
+        "username": "test_user"   
+    }
+    token = jwt.encode(payload, BASE_URL, algorithm="HS256")
+    return token
 
 """
 Fixture to define pet data values for get test validations
