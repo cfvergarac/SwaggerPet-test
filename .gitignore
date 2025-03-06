@@ -7,3 +7,7 @@ pyvenv.cfg
 #pytest cache
 /tests/__pycache__
 /.pytest_cache
+#report files
+/archive
+output.json
+pytest_html_report.html
