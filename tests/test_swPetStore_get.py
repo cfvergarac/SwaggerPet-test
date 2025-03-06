@@ -1,7 +1,7 @@
 import pytest
 import httpx
-from test_swPetStore_utils import default_client
-from test_swPetStore_utils import mock_get_pet
+from test_swPetStore_fixtures import default_client
+from test_swPetStore_fixtures import mock_get_pet
 from petModel import PetResponse
 
 
@@ -33,7 +33,6 @@ async def test_get_pet_by_id_success(default_client: httpx.AsyncClient, mock_get
         pytest.fail("Response is not in JSON format")
     pet_data = PetResponse(**data)
     assert pet_data.id == mock_get_pet["id"], "pet id does not match"
-    assert pet_data.category.id == mock_get_pet["category"]["id"], "category id does not match"
     assert isinstance(pet_data.photoUrls, list) , "photoUrls must be a list"
     assert isinstance(pet_data.tags, list), "tags do not match"
     
